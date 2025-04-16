@@ -52,7 +52,7 @@ if user_input:
         sketch_score = sketch(emb, mu)
 
     st.subheader("Zeno μ Control Field")
-    mu_np = mu.squeeze().numpy()
+    mu_np = mu.view(-1).detach().numpy()  # ensures 1D array
     fig, ax = plt.subplots(figsize=(8, 2))
     ax.bar(np.arange(len(mu_np)), mu_np, color="tomato")
     ax.set_ylim([0, 1])
